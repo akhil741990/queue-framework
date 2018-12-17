@@ -9,8 +9,9 @@ public class QueueTest {
 
 
 	public static void main(String args[]){
-		BoundedQ<LoanApp> q = new BoundedQ<>(10);
-		QueueManger<LoanApp> qMgr = new QueueManger<>(); 
+		BoundedQ<LoanApp> q = new BoundedQ<>("UnderWriter",10);
+		QueueManger<LoanApp> qMgr = new QueueManger<>();
+		
 		User a = new UnderWriter<LoanApp>(qMgr, "A");
 		User b = new UnderWriter<LoanApp>(qMgr, "B");
 		User c = new UnderWriter<LoanApp>(qMgr, "C");

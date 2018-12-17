@@ -18,5 +18,7 @@ public class LoanApp extends Task {
 		this.id = id;
 	}
 	
-	
+	public String toString(){
+		return "Task Id: "+id; 
+	}
 }

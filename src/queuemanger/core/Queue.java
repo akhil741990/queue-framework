@@ -10,4 +10,6 @@ public interface Queue<T extends Task> {
 	public void add(T task) throws TaskNotQueued;
 	public void setExpiryInMs(long expiry);
 	public void dispatchTask(T task);
+	public String getName();
+	public T deQ() throws InterruptedException;
 }

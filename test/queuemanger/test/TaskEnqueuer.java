@@ -21,14 +21,14 @@ public class TaskEnqueuer implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			if(i%10 == 0) {
-//				try {
-//					Thread.sleep(10*1000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
+			if(i%10 == 0) {
+				try {
+					Thread.sleep(10*1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		System.out.println("End");

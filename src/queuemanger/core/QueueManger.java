@@ -26,8 +26,8 @@ public class QueueManger<T extends Task> {
 		return true;
 	}
 	
-	public void addQToHierrarchy(String queueName, Queue<T> q){
-		this.qHierrachy.put(queueName, q);
+	public void addQToHierrarchy(Queue<T> q){
+		this.qHierrachy.put(q.getName(), q);
 	}
 
 	public void approve(T app) throws QueueNotFound, TaskNotQueued{
