@@ -12,25 +12,15 @@ import user.User;
 
 public class BoundedQ<T extends Task> extends AbstractQ<T>{
 
-	
-	private List<User<T>> subscribers;
 	private int dispatchIndex;
 	private ArrayBlockingQueue<T> queue;
 	private long expiry;  // TODO : Add TimeUnit
-	private String name;
 	public BoundedQ(String name, int capacity){
-		super();
-		this.name = name;
-		subscribers = new ArrayList<>();
+		super(name);
 		queue = new ArrayBlockingQueue<>(capacity);
 		startDispactherThread();
 	}
-	@Override
-	public void subscribe(User<T> user) {
-		this.subscribers.add(user);
-		
-	}
-
+	
 	@Override
 	public void add(T task) throws TaskNotQueued {
 		task.setTimestamp(System.currentTimeMillis());
@@ -67,10 +57,7 @@ public class BoundedQ<T extends Task> extends AbstractQ<T>{
 
 	
 
-	@Override
-	public String getName() {
-		return this.name;
-	}
+	
 	@Override
 	public T deQ() throws InterruptedException {
 		// TODO Auto-generated method stub

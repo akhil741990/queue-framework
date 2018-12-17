@@ -1,20 +1,40 @@
 package queuemanger.queues;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import queuemanger.core.Queue;
 import queuemanger.core.Task;
+import user.User;
 
 public abstract class AbstractQ<T extends Task> implements Queue<T>{
 
-	protected AbstractQ(){
+	protected List<User<T>> subscribers;
+	private String name;
+	private Thread dispacther;
+	protected AbstractQ(String name){
+		this.name = name;
+		subscribers = new ArrayList<>();
 		initDispatcherThread();
 	}
-	Thread dispacther;
+	
 	protected void initDispatcherThread(){
 		dispacther = new Thread(new DispatcherThread());
 	}
 	
 	protected void startDispactherThread(){
 		dispacther.start();
+	}
+	
+	@Override
+	public void subscribe(User<T> user) {
+		this.subscribers.add(user);
+		
+	}
+	
+	@Override
+	public String getName() {
+		return this.name;
 	}
 	
 	class DispatcherThread  implements Runnable{
