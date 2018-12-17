@@ -16,9 +16,12 @@ public class BoundedQ<T extends Task> implements Queue<T>{
 	private int dispatchIndex;
 	private ArrayBlockingQueue<T> queue;
 	private long expiry;  // TODO : Add TimeUnit
+	private Thread dispatcherThread;
 	public BoundedQ(int capacity){
 		subscribers = new ArrayList<>();
 		queue = new ArrayBlockingQueue<>(capacity);
+		dispatcherThread = new Thread(new DispatcherThread());
+		dispatcherThread.start();
 	}
 	@Override
 	public void subscribe(User<T> user) {
@@ -45,7 +48,31 @@ public class BoundedQ<T extends Task> implements Queue<T>{
 	@Override
 	public void dispatchTask(T task) {
 		
-		
+		int nextdispatchIndex =  dispatchIndex++ % subscribers.size();
+		User<T> user = subscribers.get(nextdispatchIndex); 
+		System.out.println("Dispacthed to user:"+user.getName());
+ 		user.process(task);
 	}
 
+	
+	class DispatcherThread  implements Runnable{
+
+		@Override
+		public void run() {
+			System.out.println("Dispatcher Thread Started ");
+			while(true) {
+				try {
+					T task = queue.take();
+					dispatchTask(task);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+	}
+	
 }
