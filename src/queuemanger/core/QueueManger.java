@@ -27,7 +27,9 @@ public class QueueManger<T extends Task> {
 	}
 	
 	public void addQToHierrarchy(Queue<T> q){
-		this.qHierrachy.put(q.getName(), q);
+		synchronized(this.qHierrachy){
+			this.qHierrachy.put(q.getName(), q);
+		}
 	}
 
 	public void approve(T app) throws QueueNotFound, TaskNotQueued{

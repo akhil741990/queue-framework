@@ -27,9 +27,10 @@ public abstract class AbstractQ<T extends Task> implements Queue<T>{
 	}
 	
 	@Override
-	public void subscribe(User<T> user) {
-		this.subscribers.add(user);
-		
+	public  void subscribe(User<T> user) {
+		synchronized(this.subscribers){
+			this.subscribers.add(user);
+		}
 	}
 	
 	@Override
