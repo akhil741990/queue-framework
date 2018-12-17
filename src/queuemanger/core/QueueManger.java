@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 
 import queue.framework.exception.ApplicationRejected;
 import queue.framework.exception.QueueNotFound;
+import queue.framework.exception.TaskNotQueued;
 import user.User;
 
 public class QueueManger<T extends Task> {
@@ -29,7 +30,7 @@ public class QueueManger<T extends Task> {
 		this.qHierrachy.put(queueName, q);
 	}
 
-	public void approve(T app) throws QueueNotFound{
+	public void approve(T app) throws QueueNotFound, TaskNotQueued{
 		String currentQ  = app.getCurrentQ();
 		String nextQ  = getUpNextQueue(currentQ);
 		if(nextQ == null) { // Last queue in the hierrarchy
@@ -38,7 +39,7 @@ public class QueueManger<T extends Task> {
 		this.qHierrachy.get(nextQ).add(app);
 	}
 	
-	public void dissapprove(T app) throws QueueNotFound, ApplicationRejected{
+	public void dissapprove(T app) throws QueueNotFound, ApplicationRejected, TaskNotQueued{
 		String currentQ = app.getCurrentQ();
 		String nextQ = getDownNextQueue(currentQ);
 		if(nextQ == null){
