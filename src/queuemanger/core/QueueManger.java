@@ -35,8 +35,10 @@ public class QueueManger<T extends Task> {
 		String nextQ  = getUpNextQueue(currentQ);
 		if(nextQ == null) { // Last queue in the hierrarchy
 			notifyLoanDisbural(app);
+		}else{
+			this.qHierrachy.get(nextQ).add(app);
+			System.out.println("Approved - Task promoted from Q :"+currentQ + "to Q:"+nextQ);
 		}
-		this.qHierrachy.get(nextQ).add(app);
 	}
 	
 	public void dissapprove(T app) throws QueueNotFound, ApplicationRejected, TaskNotQueued{
@@ -46,6 +48,7 @@ public class QueueManger<T extends Task> {
 			throw new ApplicationRejected("Loan Application pushed out from the lowest Quueue", app);
 		}
 		this.qHierrachy.get(nextQ).add(app);
+		System.out.println("Disapproved - Task demoted from Q :"+currentQ + "to Q:"+nextQ);
 	}
 	
 	private String getUpNextQueue(String queueName) throws QueueNotFound{
@@ -92,6 +95,7 @@ public class QueueManger<T extends Task> {
 	}
 	
 	public T notifyLoanDisbural(T app){
+		System.out.println("Loan Disbursed for Task:"+app.toString());
 		return app;
 	}
 }

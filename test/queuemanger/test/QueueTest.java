@@ -2,6 +2,8 @@ package queuemanger.test;
 
 import queuemanger.core.QueueManger;
 import queuemanger.queues.BoundedQ;
+import user.FinanceTeamUser;
+import user.RiskOfficer;
 import user.UnderWriter;
 import user.User;
 
@@ -9,17 +11,23 @@ public class QueueTest {
 
 
 	public static void main(String args[]){
-		BoundedQ<LoanApp> q = new BoundedQ<>("UnderWriter",10);
+		BoundedQ<LoanApp> qUnderWriter = new BoundedQ<>("UnderWriter",10);
+		BoundedQ<LoanApp> qRiskOfficer = new BoundedQ<>("RiskOfficer",10);
+		BoundedQ<LoanApp> qFinanceTeam = new BoundedQ<>("FinanceTeam",10);
+		
 		QueueManger<LoanApp> qMgr = new QueueManger<>();
+		qMgr.addQToHierrarchy(qUnderWriter);
+		qMgr.addQToHierrarchy(qRiskOfficer);
+		qMgr.addQToHierrarchy(qFinanceTeam);
 		
-		User a = new UnderWriter<LoanApp>(qMgr, "A");
-		User b = new UnderWriter<LoanApp>(qMgr, "B");
-		User c = new UnderWriter<LoanApp>(qMgr, "C");
-		q.subscribe(a);
-		q.subscribe(b);
-		q.subscribe(c);
+		User underWriter = new UnderWriter<LoanApp>(qMgr, "User-UnderWriter");
+		User riskOfficer = new RiskOfficer<LoanApp>(qMgr, "User-RiskOfficer");
+		User financeTeam = new FinanceTeamUser<LoanApp>(qMgr, "User-FinanceTeam");
+		qUnderWriter.subscribe(underWriter);
+		qRiskOfficer.subscribe(riskOfficer);
+		qFinanceTeam.subscribe(financeTeam);
 		
-		Thread t = new Thread(new TaskEnqueuer(q));
+		Thread t = new Thread(new TaskEnqueuer(qUnderWriter));
 		t.start();
 		
 		

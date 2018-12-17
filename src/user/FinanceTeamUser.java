@@ -5,18 +5,17 @@ import queue.framework.exception.TaskNotQueued;
 import queuemanger.core.QueueManger;
 import queuemanger.core.Task;
 
-public class RiskOfficer<T extends Task> extends User<T>{
+public class FinanceTeamUser<T extends Task> extends User<T> {
 
-	public RiskOfficer(QueueManger<T> qMgr, String name) {
+	public FinanceTeamUser(QueueManger<T> qMgr, String name) {
 		super(qMgr, name);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void process(T app) throws QueueNotFound, TaskNotQueued {
-		System.out.println("Processing in RiskOffficer:"+app.toString());
-		this.appove(app);
-		
+		System.out.println("Processing in FinanceTeamUser:"+app.toString());
+		appove(app);
 	}
 
 }

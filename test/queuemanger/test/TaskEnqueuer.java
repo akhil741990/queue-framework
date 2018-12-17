@@ -13,7 +13,7 @@ public class TaskEnqueuer implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		System.out.println("start");
-		for(int i = 0 ;i < 100;i++) {
+		for(int i = 0 ;i < 1;i++) {
 			LoanApp t = new LoanApp(i);
 			try {
 				q.add(t);
