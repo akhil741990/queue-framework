@@ -16,7 +16,7 @@ public abstract class User<T extends Task> {
 		this.qMgr = qMgr;
 		this.name = name;
 	}
-	public abstract void process(T app) throws QueueNotFound, TaskNotQueued;
+	public abstract void process(T app) throws QueueNotFound, TaskNotQueued, ApplicationRejected;
 	public void subscribeToQueue(String queueName, User<T> user){
 		qMgr.subscribeToQueue(queueName, user);
 	}

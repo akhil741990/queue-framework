@@ -1,5 +1,6 @@
 package user;
 
+import queue.framework.exception.ApplicationRejected;
 import queue.framework.exception.QueueNotFound;
 import queue.framework.exception.TaskNotQueued;
 import queuemanger.core.QueueManger;
@@ -16,7 +17,7 @@ public class UnderWriter<T extends Task> extends User<T>{
 	}
 
 	@Override
-	public void process(T app) throws QueueNotFound, TaskNotQueued {
+	public void process(T app) throws QueueNotFound, TaskNotQueued, ApplicationRejected {
 		System.out.println("Processing in  UnderWriter:"+app.toString());
 		appove(app);
 		

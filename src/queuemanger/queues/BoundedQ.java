@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import queue.framework.exception.ApplicationRejected;
 import queue.framework.exception.QueueNotFound;
 import queue.framework.exception.TaskNotQueued;
 import queuemanger.core.Task;
@@ -57,6 +58,9 @@ public class BoundedQ<T extends Task> extends AbstractQ<T>{
 			user.process(task);
 		} catch (QueueNotFound | TaskNotQueued e) {
 			// TODO handle error processing and add it back to the relevantQ
+			e.printStackTrace();
+		} catch (ApplicationRejected e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
