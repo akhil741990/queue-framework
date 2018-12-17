@@ -1,0 +1,5 @@
+Review the following
+1) Refactor
+2) concurrency in QueueManager
+
+
