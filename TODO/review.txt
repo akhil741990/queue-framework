@@ -1,5 +1,0 @@
-Review the following
-1) Refactor
-2) concurrency in QueueManager
-3) Added is intialized flag in QueueManger
-

@@ -16,7 +16,7 @@ import user.User;
  */
 public class QueueManger<T extends Task> {
 	
-	LinkedHashMap<String, Queue<T>> qHierrachy;
+	private LinkedHashMap<String, Queue<T>> qHierrachy;
 	
 	public QueueManger(){
 		qHierrachy = new LinkedHashMap<>();

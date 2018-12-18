@@ -1,7 +1,0 @@
-Implement dispatch mechanism in BoundedQ
-Added synchronization where ever necessary (QueueManager)
-
-
-Think in terms of adding  throws exception in Queue Interfaces
-
-Add AbstractQ with implementation of dispatch and expiry 
