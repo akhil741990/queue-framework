@@ -2,6 +2,12 @@ package queuemanger.core;
 
 import java.io.Serializable;
 
+/**
+ * The base Class for all the tasks that will be enqueued in 
+ * to the Queues.
+ * It maintains fields like timestamp and the name of the currentQ in which 
+ * the task is enqueued
+ */
 public abstract class Task implements Serializable{
 	/**
 	 * 

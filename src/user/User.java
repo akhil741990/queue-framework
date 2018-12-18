@@ -6,6 +6,11 @@ import queue.framework.exception.TaskNotQueued;
 import queuemanger.core.QueueManger;
 import queuemanger.core.Task;
 
+/**
+ * Base class for the users of the queue management framework
+ *
+ * @param <T> here T 
+ */
 public abstract class User<T extends Task> {
 	private QueueManger<T> qMgr;
 	private String name;

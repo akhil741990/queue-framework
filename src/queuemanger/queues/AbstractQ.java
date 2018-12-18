@@ -7,6 +7,13 @@ import queuemanger.core.Queue;
 import queuemanger.core.Task;
 import user.User;
 
+/**
+ * The base Class for all the queues that will be added into the  
+ * queue hierarchy of queue management framework.
+ * It holds the users subscribed to the queue and alos provide the default
+ * task dispatching implementation
+ */
+
 public abstract class AbstractQ<T extends Task> implements Queue<T>{
 
 	protected List<User<T>> subscribers;

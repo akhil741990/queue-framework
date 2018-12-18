@@ -8,6 +8,12 @@ import queue.framework.exception.QueueNotFound;
 import queue.framework.exception.TaskNotQueued;
 import user.User;
 
+/**
+ * This class is the entry point into the queue management framework
+ * It maintains the hierarchy of the queues. 
+ * provides implementation for promotion/demotion of task from one queue to another
+ * 
+ */
 public class QueueManger<T extends Task> {
 	
 	LinkedHashMap<String, Queue<T>> qHierrachy;
