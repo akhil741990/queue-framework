@@ -41,7 +41,7 @@ public class QueueManger<T extends Task> {
 	public void approve(T app) throws QueueNotFound, TaskNotQueued{
 		String currentQ  = app.getCurrentQ();
 		String nextQ  = getUpNextQueue(currentQ);
-		if(nextQ == null) { // Last queue in the hierrarchy
+		if(nextQ == null) { // Last queue in the hierarchy
 			notifyLoanDisbural(app);
 		}else{
 			this.qHierrachy.get(nextQ).add(app);
